@@ -1,0 +1,4 @@
+- [x] Add ids to form inputs in Feedback.html
+- [x] Add placeholders to inputs
+- [x] Fix nested button to single button with onclick and type="button"
+- [x] Add CSS for text-size-adjust

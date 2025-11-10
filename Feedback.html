@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feedback Form</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <script>
+    (function () {
+      emailjs.init({
+        publicKey: "c_crO6oE62atSX0FN",
+      });
+    })();
+
+    function sendMail() {
+      const params = {
+        from_name:
+          document.getElementById("FirstName").value +
+          " " +
+          document.getElementById("LastName").value,
+        email_id: document.getElementById("email").value,
+        message: document.getElementById("message").value,
+      };
+const serviceID = "service_57mz8ij";
+const templateID = "template_chr6yzo";
+      emailjs
+        .send("service_57mz8ij", "template_chr6yzo", params)
+        .then(() => alert("✅ Feedback sent successfully!"))
+        .catch((err) => {
+          console.error(err);
+          alert("❌ Failed to send feedback.");
+        });
+    }
+  </script>
+
+  <style>
+    body {
+      background: linear-gradient(to right, #f0f8f0, #fdfaf2);
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    .feedback-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .feedback-card {
+      background-color: #fffefb;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      max-width: 900px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .feedback-left h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .feedback-left h2 span {
+      color: #166534;
+    }
+
+    .feedback-left p {
+      color: #444;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+
+    .feedback-left a {
+      color: #166534;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .feedback-right label {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: #222;
+    }
+
+    .feedback-right input,
+    .feedback-right textarea {
+      width: 100%;
+      padding: 10px;
+      background-color: #fff4cf;
+      border: 1px solid #d9d9d9;
+      border-radius: 6px;
+      outline: none;
+      font-size: 0.95rem;
+      color: #333;
+    }
+
+    .feedback-right textarea {
+      resize: none;
+    }
+
+    .feedback-right button {
+      width: 100%;
+      padding: 10px;
+      background-color: #166534;
+      color: white;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      margin-top: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .feedback-right button:hover {
+      background-color: #115229;
+    }
+
+    @media (max-width: 768px) {
+      .feedback-card {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="feedback-container">
+    <div class="feedback-card">
+      <div class="feedback-left">
+        <h2>Feed <span>back</span></h2>
+        <p>
+          "We’d love to hear from you! Your feedback helps us improve and
+          serve you better."
+        </p>
+        <a href="mailto:info@shikshacom.com">info@shikshacom.com</a>
+      </div>
+
+      <div class="feedback-right">
+        <label>Name (required)</label>
+        <div style="display: flex; gap: 10px">
+          <input
+            id="FirstName"
+            type="text"
+            placeholder="First Name"
+            required
+          />
+          <input
+            id="LastName"
+            type="text"
+            placeholder="Last Name"
+            required
+          />
+        </div>
+
+        <label style="margin-top: 10px">Email (required)</label>
+        <input
+          id="email"
+          type="email"
+          placeholder="Email"
+          required
+        />
+
+        <label style="margin-top: 10px">Message (required)</label>
+        <textarea
+          id="message"
+          rows="4"
+          placeholder="Your message..."
+          required
+        ></textarea>
+
+        <button type="button" onclick="sendMail()">Send</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
